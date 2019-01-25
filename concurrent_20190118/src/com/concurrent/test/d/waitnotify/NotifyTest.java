@@ -7,16 +7,23 @@ package com.concurrent.test.d.waitnotify;
 public class NotifyTest {
 
     public static void main(String[] args) {
-        NotifyThread threadInstance = new NotifyThread();
-        Thread thread = new Thread(threadInstance);
-        synchronized (thread) {
-            System.out.println("thread start");
-            thread.start();
-            System.out.println("thread started");
+        NotifyThread threadInstance = new NotifyThread(" NotifyThread");
+        synchronized (threadInstance) {
+            System.out.println(threadInstance.getName() + " thread start " + threadInstance.getState());
+            threadInstance.start();
+            System.out.println(threadInstance.getName() + " thread started " + threadInstance.getState());
+
+//            try {
+//                Thread.sleep(10000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
             try {
-                System.out.println("thread wait");
-                thread.wait();
-                System.out.println("thread continue");
+                System.out.println(Thread.currentThread().getName() + " thread wait");
+                threadInstance.wait();
+                Thread.sleep(10000);
+                System.out.println(Thread.currentThread().getName() + " thread continue");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

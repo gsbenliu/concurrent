@@ -7,12 +7,11 @@ package com.concurrent.test.d.waitnotify;
 public class NotifyAllTest {
 
     public static void main(String[] args) {
-        Thread thread = new Thread(new NotifyAllThread());
+        NotifyAllThread thread = new NotifyAllThread();
         synchronized (thread) {
             System.out.println("thread is start");
             thread.start();
             System.out.println("thread is started");
-
             try {
                 System.out.println("thread is wait");
                 thread.wait();
