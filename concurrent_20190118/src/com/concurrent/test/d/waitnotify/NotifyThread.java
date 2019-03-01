@@ -15,14 +15,16 @@ public class NotifyThread extends Thread {
         System.out.println(Thread.currentThread().getName() + " enter thread " + Thread.currentThread().getState());
         synchronized (this) {
             System.out.println(Thread.currentThread().getName() + " enter thread  lock method " + Thread.currentThread().getState());
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
             System.out.println(Thread.currentThread().getName() + " 同步唤醒其他线程 " + Thread.currentThread().getState());
-//            notify();
+            try {
+                this.notify();
+                Thread.sleep(10000);
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(Thread.currentThread().getName() + " enter thread  lock method is over " + Thread.currentThread().getState());
+
         }
     }
 }

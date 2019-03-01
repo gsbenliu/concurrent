@@ -13,17 +13,18 @@ public class NotifyTest {
             threadInstance.start();
             System.out.println(threadInstance.getName() + " thread started " + threadInstance.getState());
 
-//            try {
-//                Thread.sleep(10000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             try {
                 System.out.println(Thread.currentThread().getName() + " thread wait");
                 threadInstance.wait();
-                Thread.sleep(10000);
+//                Thread.sleep(10000);
                 System.out.println(Thread.currentThread().getName() + " thread continue");
+                threadInstance.notifyAll();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
